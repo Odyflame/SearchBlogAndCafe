@@ -1,6 +1,0 @@
-framework module Pods_SearchingBlogAndCafeTests {
-  umbrella header "Pods-SearchingBlogAndCafeTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
