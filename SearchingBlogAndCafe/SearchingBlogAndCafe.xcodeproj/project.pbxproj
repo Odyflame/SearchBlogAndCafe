@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		188568542692E11200BF892B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188568532692E11200BF892B /* AppDelegate.swift */; };
-		188568582692E11200BF892B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188568572692E11200BF892B /* ViewController.swift */; };
 		1885685D2692E11600BF892B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1885685C2692E11600BF892B /* Assets.xcassets */; };
 		188568602692E11600BF892B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1885685E2692E11600BF892B /* LaunchScreen.storyboard */; };
 		1885686B2692E11700BF892B /* SearchingBlogAndCafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885686A2692E11700BF892B /* SearchingBlogAndCafeTests.swift */; };
@@ -68,7 +67,6 @@
 		16FE671EBD19460D5027D325 /* Pods-SearchingBlogAndCafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchingBlogAndCafeTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchingBlogAndCafeTests/Pods-SearchingBlogAndCafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		188568502692E11200BF892B /* SearchingBlogAndCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchingBlogAndCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188568532692E11200BF892B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		188568572692E11200BF892B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1885685C2692E11600BF892B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1885685F2692E11600BF892B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		188568612692E11600BF892B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 				1885689C2692FB8900BF892B /* Detail */,
 				1885689B2692FB8300BF892B /* Home */,
 				188568532692E11200BF892B /* AppDelegate.swift */,
-				188568572692E11200BF892B /* ViewController.swift */,
 				188568612692E11600BF892B /* Info.plist */,
 			);
 			path = SearchingBlogAndCafe;
@@ -592,7 +589,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				188568582692E11200BF892B /* ViewController.swift in Sources */,
 				188568542692E11200BF892B /* AppDelegate.swift in Sources */,
 				1885689F2692FD0600BF892B /* HomeViewController.swift in Sources */,
 			);
