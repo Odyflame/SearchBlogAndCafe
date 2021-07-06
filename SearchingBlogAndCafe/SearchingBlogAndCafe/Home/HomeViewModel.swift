@@ -11,8 +11,9 @@ import RxSwift
 import RxCocoa
 
 protocol HomeViewModelInput {
-    func getBlogData(search query: String, page: Int)
-    func getCafeData(search query: String, page: Int)
+    func getBlogData(search query: String, sort: String, page: Int)
+    func getCafeData(search query: String, sort: String, page: Int)
+    func getData(search query: String, sort: String, page: Int)
 }
 
 protocol HomeViewModelOutput {
@@ -36,8 +37,8 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelOutput, HomeViewMode
     
     let disposeBag = DisposeBag()
     
-    func getBlogData(search query: String, page: Int) {
-        SearchController.shared.getBlogaData(query: query, page: page)
+    func getBlogData(search query: String, sort: String = "accuracy", page: Int) {
+        SearchController.shared.getBlogData(query: query, sort: sort, page: page)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe { [weak self] result in
@@ -54,7 +55,23 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelOutput, HomeViewMode
             }.disposed(by: disposeBag)
     }
     
-    func getCafeData(search query: String, page: Int) {
+    func getCafeData(search query: String, sort: String = "accuracy", page: Int) {
+        SearchController.shared.getCafeData(query: query, sort: sort, page: page)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .subscribe { [weak self] result in
+                
+                guard let self = self,
+                      let element = result.element else {
+                    return
+                }
+                
+                self.cafe.accept(element.documents)
+                
+            }.disposed(by: disposeBag)
+    }
+    
+    func getData(search query: String, sort: String, page: Int) {
         
     }
     

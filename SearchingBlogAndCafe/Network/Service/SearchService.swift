@@ -12,8 +12,8 @@ import Moya
 import Alamofire
 
 enum SearchService {
-    case getBlogData(query: String, sort: String = "accuracy", page: Int = 1)
-    case getCafeData(query: String, sort: String = "accuracy", page: Int = 1)
+    case getBlogData(query: String, sort: String, page: Int = 1)
+    case getCafeData(query: String, sort: String, page: Int = 1)
 }
 
 extension SearchService: TargetType {

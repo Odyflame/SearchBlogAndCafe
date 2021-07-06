@@ -12,8 +12,7 @@ public struct DocumentData {
     let title: String?
     let contents: String?
     let url: URL?
-    let cafeName: String?
-    let blogName: String?
+    let name: String?
     let thumbnailURL: URL?
     let datetime: Date?
     
@@ -21,19 +20,33 @@ public struct DocumentData {
         self.title = title
         self.contents = contents
         self.url = url
-        self.cafeName = cafeName
-        self.blogName = blogName
         self.thumbnailURL = thumbnailURL
         self.datetime = datetime
+        
+        if let cafeName = cafeName {
+            self.name = cafeName
+        } else {
+            self.name = blogName
+        }
+        
+        guard let cafeName = cafeName else {
+            self.name = blogName
+            return
+        }
+        self.name = cafeName
     }
     
     init(docs: Document) {
         self.title = docs.title
         self.contents = docs.contents
         self.url = docs.url
-        self.cafeName = docs.cafeName
-        self.blogName = docs.blogName
         self.thumbnailURL = docs.thumbnailURL
         self.datetime = docs.datetime
+        
+        guard let cafeName = docs.cafeName else {
+            self.name = docs.blogName
+            return
+        }
+        self.name = docs.cafeName
     }
 }
