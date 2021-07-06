@@ -28,6 +28,10 @@
 		188569112693135800BF892B /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188569102693135800BF892B /* SearchController.swift */; };
 		188569132693F04D00BF892B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188569122693F04D00BF892B /* HomeViewModel.swift */; };
 		188569162693FC2A00BF892B /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188569152693FC2A00BF892B /* DocumentData.swift */; };
+		1885691B269404E500BF892B /* SearchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885691A269404E500BF892B /* SearchListTableViewCell.swift */; };
+		1885691D2694057500BF892B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885691C2694057500BF892B /* SearchView.swift */; };
+		1885691F269407F800BF892B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885691E269407F800BF892B /* DetailViewController.swift */; };
+		188569212694080200BF892B /* DetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188569202694080200BF892B /* DetailWebViewController.swift */; };
 		6B9FC3E7B508FB390DE2CC0A /* Pods_SearchingBlogAndCafeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E3BDDE2EAA32DFC88A1FA8 /* Pods_SearchingBlogAndCafeTests.framework */; };
 		C001F7EEBF317A87D40C94DB /* Pods_SearchingBlogAndCafe_SearchingBlogAndCafeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAADA50AE15B2CB88E5DAD9 /* Pods_SearchingBlogAndCafe_SearchingBlogAndCafeUITests.framework */; };
 		FD3DE5789B0518FA00A6A8B4 /* Pods_Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23A4A712745049E7B77BD07 /* Pods_Network.framework */; };
@@ -100,6 +104,10 @@
 		188569102693135800BF892B /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		188569122693F04D00BF892B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		188569152693FC2A00BF892B /* DocumentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
+		1885691A269404E500BF892B /* SearchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTableViewCell.swift; sourceTree = "<group>"; };
+		1885691C2694057500BF892B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		1885691E269407F800BF892B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		188569202694080200BF892B /* DetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWebViewController.swift; sourceTree = "<group>"; };
 		2873C2CD5713B9D8338319F5 /* Pods-SearchingBlogAndCafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchingBlogAndCafeTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchingBlogAndCafeTests/Pods-SearchingBlogAndCafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		351A6F629DDC24C1C5B94D3B /* Pods-Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Network.release.xcconfig"; path = "Target Support Files/Pods-Network/Pods-Network.release.xcconfig"; sourceTree = "<group>"; };
 		5E2D8167C7FE6E3CD39D2A3D /* Pods-SearchingBlogAndCafeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchingBlogAndCafeTests.release.xcconfig"; path = "Target Support Files/Pods-SearchingBlogAndCafeTests/Pods-SearchingBlogAndCafeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +260,7 @@
 		188568FD26930AB200BF892B /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				1885691E269407F800BF892B /* DetailViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -259,6 +268,7 @@
 		188568FE26930AB900BF892B /* DetailWeb */ = {
 			isa = PBXGroup;
 			children = (
+				188569202694080200BF892B /* DetailWebViewController.swift */,
 			);
 			path = DetailWeb;
 			sourceTree = "<group>";
@@ -301,6 +311,7 @@
 		188569172693FEA200BF892B /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1885691C2694057500BF892B /* SearchView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -315,6 +326,7 @@
 		188569192693FEB100BF892B /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
+				1885691A269404E500BF892B /* SearchListTableViewCell.swift */,
 			);
 			path = SearchList;
 			sourceTree = "<group>";
@@ -651,8 +663,12 @@
 				188569162693FC2A00BF892B /* DocumentData.swift in Sources */,
 				188568B92693075C00BF892B /* ViewController.swift in Sources */,
 				188568B52693075C00BF892B /* AppDelegate.swift in Sources */,
+				188569212694080200BF892B /* DetailWebViewController.swift in Sources */,
+				1885691D2694057500BF892B /* SearchView.swift in Sources */,
+				1885691B269404E500BF892B /* SearchListTableViewCell.swift in Sources */,
 				1885690026930AC800BF892B /* HomeViewController.swift in Sources */,
 				188569132693F04D00BF892B /* HomeViewModel.swift in Sources */,
+				1885691F269407F800BF892B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,7 +786,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -825,7 +841,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
