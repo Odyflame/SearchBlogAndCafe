@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0BF9E4DE42C286677FFA3C73 /* Pods_SearchingBlogAndCafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68317C14FB89E2DDCAFDFF1 /* Pods_SearchingBlogAndCafe.framework */; };
+		1801B30B2695396300876DC6 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B30A2695396300876DC6 /* FilterView.swift */; };
+		1801B30D2695479700876DC6 /* SearchListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B30C2695479700876DC6 /* SearchListTableView.swift */; };
 		188568B52693075C00BF892B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188568B42693075C00BF892B /* AppDelegate.swift */; };
 		188568B92693075C00BF892B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188568B82693075C00BF892B /* ViewController.swift */; };
 		188568BE2693075E00BF892B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188568BD2693075E00BF892B /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 /* Begin PBXFileReference section */
 		09CD185A33FDF1AEB798DA01 /* Pods-SearchingBlogAndCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchingBlogAndCafe.debug.xcconfig"; path = "Target Support Files/Pods-SearchingBlogAndCafe/Pods-SearchingBlogAndCafe.debug.xcconfig"; sourceTree = "<group>"; };
 		0B82A18F4E6880CE56DADB91 /* Pods-SearchingBlogAndCafe-SearchingBlogAndCafeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchingBlogAndCafe-SearchingBlogAndCafeUITests.release.xcconfig"; path = "Target Support Files/Pods-SearchingBlogAndCafe-SearchingBlogAndCafeUITests/Pods-SearchingBlogAndCafe-SearchingBlogAndCafeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1801B30A2695396300876DC6 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		1801B30C2695479700876DC6 /* SearchListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTableView.swift; sourceTree = "<group>"; };
 		188568B12693075B00BF892B /* SearchingBlogAndCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchingBlogAndCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188568B42693075C00BF892B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188568B82693075C00BF892B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,11 +161,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1801B3082694871900876DC6 /* Sort */ = {
+		1801B3082694871900876DC6 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				1801B30A2695396300876DC6 /* FilterView.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		1801B30E2695512300876DC6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Sort;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		188568A82693075B00BF892B = {
@@ -191,6 +203,7 @@
 		188568B32693075B00BF892B /* SearchingBlogAndCafe */ = {
 			isa = PBXGroup;
 			children = (
+				1801B30E2695512300876DC6 /* Utils */,
 				188569142693FC1500BF892B /* Model */,
 				188568FE26930AB900BF892B /* DetailWeb */,
 				188568FD26930AB200BF892B /* Detail */,
@@ -256,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				188569192693FEB100BF892B /* SearchList */,
-				188569182693FEA900BF892B /* Filter */,
 				188569172693FEA200BF892B /* Search */,
 				188568FF26930AC800BF892B /* HomeViewController.swift */,
 				188569122693F04D00BF892B /* HomeViewModel.swift */,
@@ -323,18 +335,12 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		188569182693FEA900BF892B /* Filter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Filter;
-			sourceTree = "<group>";
-		};
 		188569192693FEB100BF892B /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
-				1801B3082694871900876DC6 /* Sort */,
+				1801B3082694871900876DC6 /* Filter */,
 				1885691A269404E500BF892B /* SearchListTableViewCell.swift */,
+				1801B30C2695479700876DC6 /* SearchListTableView.swift */,
 			);
 			path = SearchList;
 			sourceTree = "<group>";
@@ -674,8 +680,10 @@
 				188569212694080200BF892B /* DetailWebViewController.swift in Sources */,
 				1885691D2694057500BF892B /* SearchView.swift in Sources */,
 				1885691B269404E500BF892B /* SearchListTableViewCell.swift in Sources */,
+				1801B30D2695479700876DC6 /* SearchListTableView.swift in Sources */,
 				1885690026930AC800BF892B /* HomeViewController.swift in Sources */,
 				188569132693F04D00BF892B /* HomeViewModel.swift in Sources */,
+				1801B30B2695396300876DC6 /* FilterView.swift in Sources */,
 				1885691F269407F800BF892B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

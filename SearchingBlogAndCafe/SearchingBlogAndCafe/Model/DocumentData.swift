@@ -8,10 +8,10 @@
 import Foundation
 import Network
 
-enum DataType {
-    case all
-    case blog
-    case cafe
+enum DataType: String{
+    case all = "All"
+    case blog = "Blog"
+    case cafe = "Cafe"
 }
 
 public struct DocumentData {

@@ -10,6 +10,7 @@ import Kingfisher
 
 class SearchListTableViewCell: UITableViewCell {
 
+    static let reuseIdentifier = String(describing: SearchListTableViewCell.self)
     let thumbnailImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
@@ -34,6 +35,7 @@ class SearchListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        configureAttribute()
         configureLayout()
     }
     
@@ -41,29 +43,32 @@ class SearchListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureAttribute() {
+        contentView.backgroundColor = .white
+    }
+    
     func configure(_ data: DocumentData) {
-//        contentView.backgroundColor = data.didURLLinkTapped ? .lightGray : .white
-//        thumbnailImageView.kf.setImage(with: data.thumbnailURL, placeholder: #imageLiteral(resourceName: "thumbnail_placeholder"))
-//        typeLabel.text = data.type.title
-//        nameLabel.text = data.name
-//        titleLabel.text = data.title
-//
-//        var datetime: String {
-//            let calendar = Calendar(identifier: .gregorian)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-//            let contentDate = data.datetime ?? Date()
-//
-//            if calendar.isDateInToday(contentDate) {
-//                return "오늘"
-//            } else if calendar.isDateInYesterday(contentDate) {
-//                return "어제"
-//            } else {
-//                return dateFormatter.string(from: contentDate)
-//            }
-//        }
-//
-//        datetimeLabel.text = datetime
+        thumbnailImageView.kf.setImage(with: data.thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
+        typeLabel.text = data.type?.rawValue
+        nameLabel.text = data.name
+        titleLabel.text = data.title
+
+        var datetime: String {
+            let calendar = Calendar(identifier: .gregorian)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+            let contentDate = data.datetime ?? Date()
+            
+            if calendar.isDateInToday(contentDate) {
+                return "Today"
+            } else if calendar.isDateInYesterday(contentDate) {
+                return "Yesterday"
+            } else {
+                return dateFormatter.string(from: contentDate)
+            }
+        }
+
+        datetimeLabel.text = datetime
     }
 
     private func configureLayout() {

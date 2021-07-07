@@ -17,8 +17,8 @@ protocol HomeViewModelInput {
 }
 
 protocol HomeViewModelOutput {
-    var blog: BehaviorRelay<[Document]> { get }
-    var cafe: BehaviorRelay<[Document]> { get }
+    var blog: BehaviorRelay<[DocumentData]> { get }
+    var cafe: BehaviorRelay<[DocumentData]> { get }
 }
 
 protocol HomeViewModelType {
@@ -27,9 +27,9 @@ protocol HomeViewModelType {
 }
 
 public class HomeViewModel: HomeViewModelType, HomeViewModelOutput, HomeViewModelInput {
-    var blog: BehaviorRelay<[Document]>
+    var blog: BehaviorRelay<[DocumentData]>
     
-    var cafe: BehaviorRelay<[Document]>
+    var cafe: BehaviorRelay<[DocumentData]>
     
     var input: HomeViewModelInput { return self }
     
@@ -48,9 +48,8 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelOutput, HomeViewMode
                     return
                 }
                 
-                
-                
-                self.blog.accept(element.documents)
+                let data = element.documents.map { DocumentData(docs: $0)}
+                self.blog.accept(data)
                 
             }.disposed(by: disposeBag)
     }
@@ -66,7 +65,8 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelOutput, HomeViewMode
                     return
                 }
                 
-                self.cafe.accept(element.documents)
+                let data = element.documents.map { DocumentData(docs: $0)}
+                self.cafe.accept(data)
                 
             }.disposed(by: disposeBag)
     }
@@ -76,7 +76,7 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelOutput, HomeViewMode
     }
     
     init() {
-        blog = BehaviorRelay<[Document]>(value: [])
-        cafe = BehaviorRelay<[Document]>(value: [])
+        blog = BehaviorRelay<[DocumentData]>(value: [])
+        cafe = BehaviorRelay<[DocumentData]>(value: [])
     }
 }
