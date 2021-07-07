@@ -6,24 +6,29 @@
 //
 
 import UIKit
+import WebKit
+import SnapKit
 
 class DetailWebViewController: UIViewController {
+    
+    lazy var webView = WKWebView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        configureLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureWebview(url: URL) {
+        webView.load(URLRequest(url: url))
     }
-    */
+ 
+    private func configureLayout() {
+        view.addSubview(webView)
+        
+        webView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 
 }

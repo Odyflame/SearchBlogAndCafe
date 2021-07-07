@@ -157,6 +157,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1801B3082694871900876DC6 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sort;
+			sourceTree = "<group>";
+		};
 		188568A82693075B00BF892B = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +333,7 @@
 		188569192693FEB100BF892B /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
+				1801B3082694871900876DC6 /* Sort */,
 				1885691A269404E500BF892B /* SearchListTableViewCell.swift */,
 			);
 			path = SearchList;

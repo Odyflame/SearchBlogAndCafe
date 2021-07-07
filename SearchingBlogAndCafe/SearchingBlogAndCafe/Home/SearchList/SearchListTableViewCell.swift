@@ -10,24 +10,38 @@ import Kingfisher
 
 class SearchListTableViewCell: UITableViewCell {
 
-    let thumbnailImageView = UIImageView()
-    let typeLabel = UILabel()
-    let nameLabel = UILabel()
-    let titleLabel = UILabel()
-    let datetimeLabel = UILabel()
+    let thumbnailImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let typeLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 14, weight: .light)
+        $0.sizeToFit()
+    }
+    
+    let nameLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+    }
+    
+    let titleLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 16)
+        $0.numberOfLines = 2
+    }
+    let datetimeLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 13, weight: .light)
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        attribute()
-        layout()
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(_ data: DocumentData) {
+    func configure(_ data: DocumentData) {
 //        contentView.backgroundColor = data.didURLLinkTapped ? .lightGray : .white
 //        thumbnailImageView.kf.setImage(with: data.thumbnailURL, placeholder: #imageLiteral(resourceName: "thumbnail_placeholder"))
 //        typeLabel.text = data.type.title
@@ -51,22 +65,8 @@ class SearchListTableViewCell: UITableViewCell {
 //
 //        datetimeLabel.text = datetime
     }
-    
-    private func attribute() {
-        thumbnailImageView.contentMode = .scaleAspectFit
-        
-        typeLabel.font = .systemFont(ofSize: 12, weight: .light)
-        typeLabel.sizeToFit()
-        
-        nameLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        
-        titleLabel.font = .systemFont(ofSize: 14)
-        titleLabel.numberOfLines = 2
-        
-        datetimeLabel.font = .systemFont(ofSize: 12, weight: .light)
-    }
-    
-    private func layout() {
+
+    private func configureLayout() {
         [thumbnailImageView, typeLabel, nameLabel, titleLabel, datetimeLabel].forEach {
             contentView.addSubview($0)
         }

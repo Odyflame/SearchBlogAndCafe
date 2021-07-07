@@ -8,6 +8,12 @@
 import Foundation
 import Network
 
+enum DataType {
+    case all
+    case blog
+    case cafe
+}
+
 public struct DocumentData {
     let title: String?
     let contents: String?
@@ -15,6 +21,7 @@ public struct DocumentData {
     let name: String?
     let thumbnailURL: URL?
     let datetime: Date?
+    let type: DataType?
     
     init(title: String?, contents: String?, url: URL?, cafeName: String?, blogName: String?, thumbnailURL: URL?, datetime: Date?) {
         self.title = title
@@ -23,17 +30,13 @@ public struct DocumentData {
         self.thumbnailURL = thumbnailURL
         self.datetime = datetime
         
-        if let cafeName = cafeName {
-            self.name = cafeName
-        } else {
-            self.name = blogName
-        }
-        
         guard let cafeName = cafeName else {
             self.name = blogName
+            self.type = .blog
             return
         }
         self.name = cafeName
+        self.type = .cafe
     }
     
     init(docs: Document) {
@@ -45,8 +48,10 @@ public struct DocumentData {
         
         guard let cafeName = docs.cafeName else {
             self.name = docs.blogName
+            self.type = .blog
             return
         }
         self.name = docs.cafeName
+        self.type = .cafe
     }
 }
