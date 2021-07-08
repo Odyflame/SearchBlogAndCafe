@@ -9,10 +9,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol SearchListTableViewDelegate: class {
+    func didTapItem()
+    func didScrollEnd()
+}
+
 class SearchListTableView: UITableView {
 
     let disposeBag = DisposeBag()
     lazy var filterHeaderView = FilterView()
+    weak var searchDelegate: SearchListTableViewDelegate?
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -42,29 +48,18 @@ class SearchListTableView: UITableView {
         self.rx.itemSelected
             .map { $0.row }
             .subscribe(onNext: {
-                
+                self.searchDelegate?.didTapItem()
             })
             .disposed(by: disposeBag)
         
         self.rx.willDisplayCell
             .map { $0.indexPath.row }
             .subscribe(onNext: {
-                
+                if $0 > 25 {
+                    self.searchDelegate?.didScrollEnd()
+                }
             })
             .disposed(by: disposeBag)
-        
-        self.rx.didScroll
-            .subscribe(onNext: {
-                
-            })
-            .disposed(by: disposeBag)
+
     }
 }
-
-//extension SearchListTableView: UITableViewDelegate {
-//
-//}
-//
-//extension SearchListTableView: UITableViewDataSource {
-//
-//}

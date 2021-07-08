@@ -9,6 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol FilterViewDelegate: class {
+    func didTapSortedButton()
+    func didTapTypeButton()
+}
+
 class FilterView: UITableViewHeaderFooterView {
 
     enum Constant {
@@ -18,8 +23,16 @@ class FilterView: UITableViewHeaderFooterView {
     
     var disposeBag = DisposeBag()
     
+    var dataType: DataType = .all
+    var sortType: SortType = .accuracy
+    
+    weak var filterDelegate: FilterViewDelegate?
+        
     lazy var typeButton = UIButton().then {
-        $0.contentHorizontalAlignment = .center
+        $0.setTitle(DataType.all.rawValue, for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.contentHorizontalAlignment = .left
+        $0.backgroundColor = .white
     }
     lazy var sortButton = UIButton().then {
         $0.setImage(#imageLiteral(resourceName: "filter"), for: .normal)
@@ -41,39 +54,37 @@ class FilterView: UITableViewHeaderFooterView {
     
     private func bindRx() {
         
-//        viewModel.updatedType
-//            .map { $0.title }
-//            .emit(to: typeButton.rx.title())
-//            .disposed(by: disposeBag)
-//
-//        typeButton.rx.tap
-//            .bind(to: viewModel.typeButtonTapped)
-//            .disposed(by: disposeBag)
-//
-//        sortButton.rx.tap
-//            .bind(to: viewModel.sortButtonTapped)
-//            .disposed(by: disposeBag)
+        self.typeButton.rx.tap
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                self.filterDelegate?.didTapTypeButton()
+            })
+            .disposed(by: disposeBag)
+
+        self.sortButton.rx.tap
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                
+                self.filterDelegate?.didTapSortedButton()
+                
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureLayout() {
-        [typeButton, sortButton, bottomBorder].forEach { addSubview($0) }
+        [typeButton, sortButton].forEach { addSubview($0) }
         
         typeButton.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(Constant.SidePadding)
+            $0.height.equalTo(Constant.FilterSize)
         }
         
         sortButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(typeButton)
             $0.leading.equalTo(typeButton.snp.trailing).offset(Constant.SidePadding)
             $0.trailing.equalToSuperview().inset(Constant.SidePadding)
             $0.width.height.equalTo(Constant.FilterSize)
-        }
-        
-        bottomBorder.snp.makeConstraints {
-            $0.top.equalTo(typeButton.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(0.5)
         }
     }
     

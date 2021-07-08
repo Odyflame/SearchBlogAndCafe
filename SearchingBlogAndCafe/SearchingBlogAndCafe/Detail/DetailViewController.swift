@@ -48,6 +48,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAttribute()
+        configureLayout()
+        bindRx()
     }
     
     private func configureAttribute() {
@@ -65,5 +67,60 @@ class DetailViewController: UIViewController {
                 self.navigationController?.pushViewController(detailWebViewcontroller, animated: true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func configure(_ data: DocumentData) {
+        thumbnailImageView.kf.setImage(with: data.thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
+        contentLabel.text = data.contents
+        nameLabel.text = data.name
+        titleLabel.text = data.title
+        urlLabel.text = "\(data.url)"
+
+        var datetime: String {
+            let calendar = Calendar(identifier: .gregorian)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+            let contentDate = data.datetime ?? Date()
+            
+            if calendar.isDateInToday(contentDate) {
+                return "Today"
+            } else if calendar.isDateInYesterday(contentDate) {
+                return "Yesterday"
+            } else {
+                return dateFormatter.string(from: contentDate)
+            }
+        }
+
+        datetimeLabel.text = datetime
+    }
+    
+    private func configureLayout() {
+        let urlView = UIView()
+        [urlLabel, urlButton].forEach { urlView.addSubview($0) }
+        
+        [thumbnailImageView, nameLabel, titleLabel, contentLabel, datetimeLabel, urlView].forEach {
+            contentView.addArrangedSubview($0)
+        }
+        
+        view.addSubview(contentView)
+        
+        contentView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.center.equalToSuperview()
+        }
+        
+        thumbnailImageView.snp.makeConstraints {
+            $0.width.height.equalTo(240)
+        }
+        
+        urlLabel.snp.makeConstraints {
+            $0.top.bottom.leading.equalToSuperview()
+        }
+        
+        urlButton.snp.makeConstraints {
+            $0.centerY.equalTo(urlLabel)
+            $0.trailing.equalToSuperview()
+            $0.leading.equalTo(urlLabel.snp.trailing).offset(8)
+        }
     }
 }

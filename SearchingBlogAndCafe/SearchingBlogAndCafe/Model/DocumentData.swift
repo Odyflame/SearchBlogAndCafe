@@ -14,6 +14,11 @@ enum DataType: String{
     case cafe = "Cafe"
 }
 
+enum SortType: String {
+    case accuracy = "accuracy"
+    case recency = "recency"
+}
+
 public struct DocumentData {
     let title: String?
     let contents: String?

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol SearchViewDelegate: class {
-    var didTapSearchButtonWithKeyword: PublishRelay<Void> { get }
+    func didTapSearchButtonWithKeyword(text: String)
 }
 
 class SearchView: UISearchBar {
@@ -19,10 +19,10 @@ class SearchView: UISearchBar {
         static let paddingSpace = 12
     }
     var disposeBag = DisposeBag()
-    weak var myDelegate: SearchViewDelegate?
+    weak var searchDelegate: SearchViewDelegate?
     
     lazy var searchButton = UIButton().then {
-        $0.setImage(#imageLiteral(resourceName: "search--v2"), for: .normal)
+        $0.setTitle("Search", for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
     }
     
@@ -31,7 +31,6 @@ class SearchView: UISearchBar {
         configureAttribute()
         configureLayout()
         bindRx()
-        print("하하")
     }
     
     required init?(coder: NSCoder) {
@@ -42,13 +41,19 @@ class SearchView: UISearchBar {
         self.searchButton.rx.tap
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: {
-                myDelegate.
+                
+                print("하하")
+                guard let txt = self.text else {
+                    return
+                }
+                self.searchDelegate?.didTapSearchButtonWithKeyword(text: txt)
+                
             })
             .disposed(by: disposeBag)
     }
     
     private func configureAttribute() {
-        backgroundColor = .red
+        backgroundColor = .white
     }
     
     private func configureLayout() {
@@ -64,6 +69,7 @@ class SearchView: UISearchBar {
         searchButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(Constant.paddingSpace)
+            $0.height.equalToSuperview().offset(-4)
         }
     }
     
