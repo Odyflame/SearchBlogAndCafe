@@ -23,13 +23,13 @@ class FilterView: UITableViewHeaderFooterView {
     
     var disposeBag = DisposeBag()
     
-    var dataType: DataType = .all
+    var dataType: DataType = .blog
     var sortType: SortType = .accuracy
     
     weak var filterDelegate: FilterViewDelegate?
         
     lazy var typeButton = UIButton().then {
-        $0.setTitle(DataType.all.rawValue, for: .normal)
+        $0.setTitle(DataType.blog.rawValue, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.contentHorizontalAlignment = .left
         $0.backgroundColor = .white
@@ -64,9 +64,7 @@ class FilterView: UITableViewHeaderFooterView {
         self.sortButton.rx.tap
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
-                
                 self.filterDelegate?.didTapSortedButton()
-                
             })
             .disposed(by: disposeBag)
     }

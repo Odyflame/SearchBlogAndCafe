@@ -17,26 +17,33 @@ class DetailViewController: UIViewController {
         $0.distribution = .fill
         $0.spacing = 12
     }
+    
     lazy var thumbnailImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
+    
     lazy var nameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 28, weight: .bold)
     }
+    
     lazy var titleLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 16)
         $0.numberOfLines = 2
     }
+    
     lazy var contentLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 14)
         $0.numberOfLines = 0
     }
+    
     lazy var datetimeLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 12, weight: .light)
     }
+    
     lazy var urlLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 14, weight: .light)
     }
+    
     lazy var urlButton = UIButton().then {
         $0.setTitle("이동", for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
@@ -70,28 +77,29 @@ class DetailViewController: UIViewController {
     }
     
     func configure(_ data: DocumentData) {
-        thumbnailImageView.kf.setImage(with: data.thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
+        let thumbnailURL = URL(string: data.thumbnailURL ?? "")!
+        thumbnailImageView.kf.setImage(with: thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
         contentLabel.text = data.contents
         nameLabel.text = data.name
         titleLabel.text = data.title
         urlLabel.text = "\(data.url)"
 
-        var datetime: String {
-            let calendar = Calendar(identifier: .gregorian)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-            let contentDate = data.datetime ?? Date()
-            
-            if calendar.isDateInToday(contentDate) {
-                return "Today"
-            } else if calendar.isDateInYesterday(contentDate) {
-                return "Yesterday"
-            } else {
-                return dateFormatter.string(from: contentDate)
-            }
-        }
+//        var datetime: String {
+//            let calendar = Calendar(identifier: .gregorian)
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+//            let contentDate = data.datetime ?? Date()
+//
+//            if calendar.isDateInToday(contentDate) {
+//                return "Today"
+//            } else if calendar.isDateInYesterday(contentDate) {
+//                return "Yesterday"
+//            } else {
+//                return dateFormatter.string(from: contentDate)
+//            }
+//        }
 
-        datetimeLabel.text = datetime
+        datetimeLabel.text = data.datetime
     }
     
     private func configureLayout() {

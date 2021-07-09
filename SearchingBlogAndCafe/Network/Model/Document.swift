@@ -10,13 +10,13 @@ import Foundation
 public struct Document: Codable {
     public var title: String?
     public var contents: String?
-    public var url: URL?
+    public var url: String?
     public var cafeName: String?
     public var blogName: String?
-    public var thumbnailURL: URL?
-    public var datetime: Date?
+    public var thumbnailURL: String?
+    public var datetime: String?
     
-    init(title: String?, contents: String?, url: URL?, cafeName: String?, blogName: String?, thumbnailURL: URL?, datetime: Date?) {
+    init(title: String?, contents: String?, url: String?, cafeName: String?, blogName: String?, thumbnailURL: String?, datetime: String?) {
         self.title = title
         self.contents = contents
         self.url = url

@@ -12,6 +12,9 @@
 		1801B30D2695479700876DC6 /* SearchListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B30C2695479700876DC6 /* SearchListTableView.swift */; };
 		1801B3122695987B00876DC6 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B3112695987B00876DC6 /* UIViewController+.swift */; };
 		1801B31426959E7E00876DC6 /* Notification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B31326959E7E00876DC6 /* Notification.Name+.swift */; };
+		186640842697CEDD00B5EF55 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186640832697CEDD00B5EF55 /* String+.swift */; };
+		186640862697D92300B5EF55 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186640852697D92300B5EF55 /* Date+.swift */; };
+		186640882697DA0600B5EF55 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186640872697DA0600B5EF55 /* URL+.swift */; };
 		188568B52693075C00BF892B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188568B42693075C00BF892B /* AppDelegate.swift */; };
 		188568B92693075C00BF892B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188568B82693075C00BF892B /* ViewController.swift */; };
 		188568BE2693075E00BF892B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188568BD2693075E00BF892B /* Assets.xcassets */; };
@@ -86,6 +89,9 @@
 		1801B30C2695479700876DC6 /* SearchListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListTableView.swift; sourceTree = "<group>"; };
 		1801B3112695987B00876DC6 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		1801B31326959E7E00876DC6 /* Notification.Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+.swift"; sourceTree = "<group>"; };
+		186640832697CEDD00B5EF55 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		186640852697D92300B5EF55 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		186640872697DA0600B5EF55 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		188568B12693075B00BF892B /* SearchingBlogAndCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchingBlogAndCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188568B42693075C00BF892B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188568B82693075C00BF892B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +184,9 @@
 			children = (
 				1801B3112695987B00876DC6 /* UIViewController+.swift */,
 				1801B31326959E7E00876DC6 /* Notification.Name+.swift */,
+				186640832697CEDD00B5EF55 /* String+.swift */,
+				186640852697D92300B5EF55 /* Date+.swift */,
+				186640872697DA0600B5EF55 /* URL+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -699,6 +708,7 @@
 				188569162693FC2A00BF892B /* DocumentData.swift in Sources */,
 				1801B31426959E7E00876DC6 /* Notification.Name+.swift in Sources */,
 				188568B92693075C00BF892B /* ViewController.swift in Sources */,
+				186640882697DA0600B5EF55 /* URL+.swift in Sources */,
 				1801B3122695987B00876DC6 /* UIViewController+.swift in Sources */,
 				188568B52693075C00BF892B /* AppDelegate.swift in Sources */,
 				188569212694080200BF892B /* DetailWebViewController.swift in Sources */,
@@ -708,6 +718,8 @@
 				1885690026930AC800BF892B /* HomeViewController.swift in Sources */,
 				188569132693F04D00BF892B /* HomeViewModel.swift in Sources */,
 				1801B30B2695396300876DC6 /* FilterView.swift in Sources */,
+				186640862697D92300B5EF55 /* Date+.swift in Sources */,
+				186640842697CEDD00B5EF55 /* String+.swift in Sources */,
 				1885691F269407F800BF892B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

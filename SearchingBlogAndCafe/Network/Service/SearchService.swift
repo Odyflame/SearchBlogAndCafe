@@ -31,10 +31,6 @@ extension SearchService: TargetType {
     
     var method: Moya.Method {
         return .get
-//        switch self {
-//        case .getBlogData: return .get
-//        case .getCafeData: return .get
-//        }
     }
     
     var sampleData: Data {

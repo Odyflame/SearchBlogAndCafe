@@ -13,10 +13,10 @@ extension UIViewController {
         let alert =  UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let first = UIAlertAction(title: "Title", style: .default) { (action) in
-            NotificationCenter.default.post(name: NSNotification.Name.sortTypeChanged, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.sortTypeChangedToTitle, object: nil)
         }
         let second = UIAlertAction(title: "DateTime", style: .default) { (action) in
-            NotificationCenter.default.post(name: NSNotification.Name.sortTypeChanged, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.sortTypeChangedToDateTime, object: nil)
         }
         
         let cancel = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)

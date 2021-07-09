@@ -16,8 +16,16 @@ class HomeViewController: UIViewController {
     let disposeBag = DisposeBag()
     var viewModel = HomeViewModel()
     
-    lazy var searchView = SearchView().then {
-        $0.searchDelegate = self
+    enum Constant {
+        static let searchButtonPaddingSpace = 12
+    }
+    
+    lazy var searchView = UISearchBar().then {
+        $0.backgroundColor = .white
+    }
+    lazy var searchButton = UIButton().then {
+        $0.setTitle("Search", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
     }
     //lazy var searchListTableView = SearchListTableView()
     lazy var searchListTableView = UITableView().then {
@@ -30,7 +38,7 @@ class HomeViewController: UIViewController {
         $0.dataSource = self
     }
     
-    var dataType: DataType = .all
+    var dataType: DataType = .blog
     var sortType: SortType = .accuracy
     
     var all = [DocumentData]()
@@ -48,9 +56,33 @@ class HomeViewController: UIViewController {
     func setNotification() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(<#T##@objc method#>),
-            name: Notification.Name.sortTypeChanged,
+            selector: #selector(changeSortTypeToTitle),
+            name: Notification.Name.sortTypeChangedToTitle,
             object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(changeSortTypeToDateTime),
+            name: Notification.Name.sortTypeChangedToDateTime,
+            object: nil)
+    }
+    
+    @objc
+    func changeSortTypeToTitle() {
+        self.sortType = .accuracy
+        self.viewModel.initData()
+        self.viewModel.initPage()
+        guard let txt = searchView.text else { return }
+        self.viewModel.input.getData(search: txt, sortType.rawValue, 1, dataType: dataType)
+    }
+    
+    @objc
+    func changeSortTypeToDateTime() {
+        self.sortType = .recency
+        self.viewModel.initData()
+        self.viewModel.initPage()
+        guard let txt = searchView.text else { return }
+        self.viewModel.input.getData(search: txt, sortType.rawValue, 1, dataType: dataType)
     }
     
     func bindRx() {
@@ -58,7 +90,18 @@ class HomeViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.all = self?.viewModel.output.all.value ?? []
+                
                 self?.searchListTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        searchButton.rx.tap
+            .subscribe(onNext: {
+                self.viewModel.initData()
+                self.viewModel.initPage()
+                
+                guard let txt = self.searchView.text else { return }
+                self.viewModel.input.getData(search: txt, self.sortType.rawValue, 1, dataType: self.dataType)
             })
             .disposed(by: disposeBag)
     }
@@ -70,11 +113,18 @@ class HomeViewController: UIViewController {
     }
     
     private func configureLayout() {
-        [searchView, searchListTableView].forEach { view.addSubview($0) }
+        [searchView, searchButton, searchListTableView].forEach { view.addSubview($0) }
         
         searchView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        searchButton.snp.makeConstraints {
+            $0.centerY.equalTo(searchView)
+            $0.leading.equalTo(searchView.snp.trailing).offset(4)
+            $0.trailing.equalToSuperview().inset(Constant.searchButtonPaddingSpace)
+            $0.height.equalTo(searchView).offset(-4)
         }
         
         searchListTableView.snp.makeConstraints { make in
@@ -109,7 +159,6 @@ extension HomeViewController: UITableViewDataSource {
         return cell
     }
     
-    /* 다음 목록 불러오기 */
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
@@ -129,11 +178,5 @@ extension HomeViewController: FilterViewDelegate {
     
     func didTapTypeButton() {
         
-    }
-}
-
-extension HomeViewController: SearchViewDelegate {
-    func didTapSearchButtonWithKeyword(text: String) {
-        self.viewModel.input.getData(search: text, sortType.rawValue, 1)
     }
 }

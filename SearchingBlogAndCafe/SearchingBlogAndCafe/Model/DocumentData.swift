@@ -9,7 +9,6 @@ import Foundation
 import Network
 
 enum DataType: String{
-    case all = "All"
     case blog = "Blog"
     case cafe = "Cafe"
 }
@@ -25,21 +24,22 @@ public struct DocumentData {
     let url: URL?
     let name: String?
     let thumbnailURL: URL?
-    let datetime: Date?
+    let datetime: String?
     let type: DataType?
     
-    init(title: String?, contents: String?, url: URL?, cafeName: String?, blogName: String?, thumbnailURL: URL?, datetime: Date?) {
-        self.title = title
-        self.contents = contents
-        self.url = url
-        self.thumbnailURL = thumbnailURL
-        self.datetime = datetime
+    init(title: String?, contents: String?, url: String?, cafeName: String?, blogName: String?, thumbnailURL: String?, datetime: String?) {
+        self.title = String.parse(value: title)
+        self.contents = String.parse(value: contents)
+        self.datetime = String.parse(value: datetime)
+        self.url = URL.parse(url)
+        self.thumbnailURL =  URL.parse(thumbnailURL)
         
         guard let cafeName = cafeName else {
             self.name = blogName
             self.type = .blog
             return
         }
+        
         self.name = cafeName
         self.type = .cafe
     }
@@ -47,8 +47,8 @@ public struct DocumentData {
     init(docs: Document) {
         self.title = docs.title
         self.contents = docs.contents
-        self.url = docs.url
-        self.thumbnailURL = docs.thumbnailURL
+        self.url =  URL.parse(docs.url)
+        self.thumbnailURL =  URL.parse(docs.thumbnailURL)
         self.datetime = docs.datetime
         
         guard let cafeName = docs.cafeName else {
