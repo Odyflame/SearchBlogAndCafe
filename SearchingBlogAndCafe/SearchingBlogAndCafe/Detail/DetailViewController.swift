@@ -69,7 +69,9 @@ class DetailViewController: UIViewController {
             .drive(onNext: { view in
                 
                 var detailWebViewcontroller = DetailWebViewController()
-                detailWebViewcontroller.configureWebview(url: URL(string: self.urlLabel.text ?? "")!)
+                
+                print("\(self.urlLabel.text)")
+                detailWebViewcontroller.configureWebview(url: URL(string: self.urlLabel.text ?? "")!, title: self.titleLabel.text ?? "")
                 
                 self.navigationController?.pushViewController(detailWebViewcontroller, animated: true)
             })
@@ -77,29 +79,17 @@ class DetailViewController: UIViewController {
     }
     
     func configure(_ data: DocumentData) {
-        let thumbnailURL = URL(string: data.thumbnailURL ?? "")!
+        let thumbnailURL = data.thumbnailURL
         thumbnailImageView.kf.setImage(with: thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
         contentLabel.text = data.contents
         nameLabel.text = data.name
         titleLabel.text = data.title
-        urlLabel.text = "\(data.url)"
+        urlLabel.text = data.url?.absoluteString
 
-//        var datetime: String {
-//            let calendar = Calendar(identifier: .gregorian)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-//            let contentDate = data.datetime ?? Date()
-//
-//            if calendar.isDateInToday(contentDate) {
-//                return "Today"
-//            } else if calendar.isDateInYesterday(contentDate) {
-//                return "Yesterday"
-//            } else {
-//                return dateFormatter.string(from: contentDate)
-//            }
-//        }
-
-        datetimeLabel.text = data.datetime
+        datetimeLabel.text = String.convertToDate(data.datetime)
+        
+        print("화하핳 \(data.type?.rawValue)")
+        title = data.type?.rawValue
     }
     
     private func configureLayout() {

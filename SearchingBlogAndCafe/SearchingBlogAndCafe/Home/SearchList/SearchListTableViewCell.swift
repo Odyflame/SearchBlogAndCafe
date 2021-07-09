@@ -48,28 +48,12 @@ class SearchListTableViewCell: UITableViewCell {
     }
     
     func configure(_ data: DocumentData) {
-        let thumbnailURL = URL(string: data.thumbnailURL ?? "")!
-        thumbnailImageView.kf.setImage(with: thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
+        thumbnailImageView.kf.setImage(with: data.thumbnailURL, placeholder: #imageLiteral(resourceName: "no-image"))
         typeLabel.text = data.type?.rawValue
         nameLabel.text = String.parse(value: data.name)
         titleLabel.text = String.parse(value: data.title)
 
-//        var datetime: String {
-//            let calendar = Calendar(identifier: .gregorian)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-//            let contentDate = data.datetime ?? Date()
-//
-//            if calendar.isDateInToday(contentDate) {
-//                return "Today"
-//            } else if calendar.isDateInYesterday(contentDate) {
-//                return "Yesterday"
-//            } else {
-//                return dateFormatter.string(from: contentDate)
-//            }
-//        }
-
-        datetimeLabel.text = String.parse(value: data.datetime)
+        datetimeLabel.text = String.convertToDate(data.datetime)
     }
 
     private func configureLayout() {

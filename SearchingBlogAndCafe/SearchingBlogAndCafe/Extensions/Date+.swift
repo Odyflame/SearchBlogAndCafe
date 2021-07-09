@@ -12,14 +12,15 @@ extension Date {
     // Use for Decodable Date Parsing
     static func parse<K: CodingKey>(_ values: KeyedDecodingContainer<K>, key: K) -> Date? {
         guard let dateString = try? values.decode(String.self, forKey: key),
-            let date = from(dateString: dateString) else {
+            let date = from(dateString) else {
             return nil
         }
         
         return date
     }
     
-    static func from(dateString: String) -> Date? {
+    static func from(_ dateString: String?) -> Date? {
+        guard let dateString = dateString else { return nil }
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"

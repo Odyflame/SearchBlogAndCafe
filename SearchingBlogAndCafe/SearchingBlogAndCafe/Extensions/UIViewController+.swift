@@ -24,8 +24,6 @@ extension UIViewController {
         alert.addAction(first)
         alert.addAction(second)
         alert.addAction(cancel)
-        present(alert, animated: true) {
-            self.dismiss(animated: true, completion: nil)
-        }
+        present(alert, animated: true)
     }
 }

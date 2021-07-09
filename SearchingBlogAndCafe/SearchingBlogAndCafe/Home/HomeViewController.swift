@@ -108,8 +108,6 @@ class HomeViewController: UIViewController {
     
     private func configureAttribute() {
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true
-        
     }
     
     private func configureLayout() {
@@ -173,6 +171,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: FilterViewDelegate {
     func didTapSortedButton() {
+        print("하하")
         showSortAlertView()
     }
     

@@ -24,39 +24,41 @@ public struct DocumentData {
     let url: URL?
     let name: String?
     let thumbnailURL: URL?
-    let datetime: String?
+    let datetime: Date?
     let type: DataType?
     
     init(title: String?, contents: String?, url: String?, cafeName: String?, blogName: String?, thumbnailURL: String?, datetime: String?) {
         self.title = String.parse(value: title)
         self.contents = String.parse(value: contents)
-        self.datetime = String.parse(value: datetime)
+        
         self.url = URL.parse(url)
         self.thumbnailURL =  URL.parse(thumbnailURL)
         
+        self.datetime = Date.from(datetime)
+        
         guard let cafeName = cafeName else {
-            self.name = blogName
+            self.name = String.parse(value: blogName)
             self.type = .blog
             return
         }
         
-        self.name = cafeName
+        self.name = String.parse(value: cafeName)
         self.type = .cafe
     }
     
     init(docs: Document) {
-        self.title = docs.title
-        self.contents = docs.contents
+        self.title = String.parse(value: docs.title)
+        self.contents = String.parse(value: docs.contents)
         self.url =  URL.parse(docs.url)
         self.thumbnailURL =  URL.parse(docs.thumbnailURL)
-        self.datetime = docs.datetime
+        self.datetime = Date.from(docs.datetime)
         
         guard let cafeName = docs.cafeName else {
-            self.name = docs.blogName
+            self.name = String.parse(value: docs.blogName)
             self.type = .blog
             return
         }
-        self.name = docs.cafeName
+        self.name = String.parse(value: docs.cafeName)
         self.type = .cafe
     }
 }

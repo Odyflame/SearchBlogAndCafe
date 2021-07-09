@@ -24,4 +24,20 @@ extension String {
             .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
             .replacingOccurrences(of: "&[^;]+;", with: "", options: .regularExpression, range: nil)
     }
+    
+    static func convertToDate(_ value: Date?) -> String? {
+        guard let value = value else { return nil }
+        
+        let calender = Calendar(identifier: .gregorian)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        if calender.isDateInToday(value) {
+            return "Today"
+        } else if calender.isDateInYesterday(value) {
+            return "Yesterday"
+        } else {
+            return dateFormatter.string(from: value)
+        }
+    }
 }
